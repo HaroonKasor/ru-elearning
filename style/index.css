@@ -138,14 +138,14 @@
 
         /* Hero Split */
         .hero-split {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 80px 5%;
-            overflow: hidden;
-            color: #264a9c;
-        }
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 10px 5%;
+    position: relative;
+
+
+}
 
         /* 1) Background Gradient + Wavy SVG */
         .hero-background {
