@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elearning Ru</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style/index.css">
+    <meta name="description"
+        content="RU e-Learning ระบบเรียนออนไลน์จากมหาวิทยาลัยรามคำแหง ครอบคลุมคอร์สหลากหลาย ตลอด 24/7">
+    <meta property="og:title" content="RU e-Learning">
+    <meta property="og:description" content="เรียนออนไลน์ง่ายๆ ทุกที่ ทุกเวลา กับคอร์สคุณภาพจาก RU">
+    <meta property="og:image" content="/image/banner.jpg">
+    <meta property="og:url" content="https://yourdomain.com/">
+
+</head>
+
+<body>
+    <header>
+        <!-- Loading Screen -->
+        <div class="curve-loading" id="loadingScreen">
+            <svg class="spinner" viewBox="0 0 100 100">
+                <path d="M 50,10 A 40,40 0 1,1 50,90" fill="none" stroke-linecap="round" />
+                <path d="M 50,90 A 40,40 0 1,1 50,10" fill="none" stroke-linecap="round" />
+            </svg>
+            <div class="loading-text">รามคำแหง e-Learning</div>
+        </div>
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="logo">
+                <a href="/index.html">
+                    <img src="/image/logo.png" alt="Ru Logo">
+            </div>
+            <nav class="nav-links1">
+                <a href="#home">Home</a>
+                <a href="#course">หลักสูตร</a>
+                <a href="#about us">เกี่ยวกับเรา</a>
+                <a href="#footer">ติดต่อเรา</a>
+            </nav>
+            <nav class="nav-links2">
+                <a href="/login.html" class="login-btn">เข้าสู่ระบบ</a>
+                <a href="/register.html" class="login-btn">สมัครสมาชิก</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero-split">
+        <div class="hero-background"></div>
+        <div class="hero-shapes">
+            <div class="shape shape--circle"></div>
+            <div class="shape shape--dot shape--dot--1"></div>
+            <div class="shape shape--dot shape--dot--2"></div>
+        </div>
+        <div class="hero-content">
+            <h1>เรียนรู้ออนไลน์<br>กับ ม.รามคำแหง</h1>
+            <p>เปิดโอกาสให้คุณพัฒนาทักษะ และเตรียมพร้อมสู่โลกอนาคต</p>
+            <div class="hero-buttons">
+                <a href="/register.html" class="btn-primary" aria-label="สมัครเรียนเลย">สมัครเรียนเลย</a>
+                <a href="/login.html" class="btn-secondary" aria-label="ดูหลักสูตร">ดูหลักสูตร</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <img src="/image/background.jpg"
+                srcset="/image/background.jpg  480w,/image/background.jpg 800w,/image/background.jpg 1200w"
+                sizes="(max-width:600px) 480px, (max-width:900px) 800px, 1200px" alt="banner" />
+        </div>
+    </section>
+
+
+    <section class="features-section" aria-labelledby="features-title">
+        <h2 id="features-title" class="section-title">ทำไมต้องเรียนกับเรา</h2>
+        <ul class="features-grid">
+            <li class="feature-card">
+                <span class="feature-icon" role="img" aria-label="มือถือ">📱</span>
+                <h3>เรียนผ่านมือถือได้</h3>
+                <p>เข้าถึงบทเรียนได้ทุกที่ทุกเวลา ผ่านสมาร์ทโฟน แท็บเล็ต หรือคอมพิวเตอร์</p>
+            </li>
+            <li class="feature-card">
+                <span class="feature-icon" role="img" aria-label="ปริญญาบัตร">🎓</span>
+                <h3>เนื้อหามาตรฐาน</h3>
+                <p>หลักสูตรได้รับการรับรองจากมหาวิทยาลัยรามคำแหง</p>
+            </li>
+            <li class="feature-card">
+                <span class="feature-icon" role="img" aria-label="อาจารย์">👨‍🏫</span>
+                <h3>ผู้เชี่ยวชาญ</h3>
+                <p>เรียนรู้จากอาจารย์และผู้เชี่ยวชาญในสาขาต่างๆ</p>
+            </li>
+            <li class="feature-card">
+                <span class="feature-icon" role="img" aria-label="หนังสือ">📚</span>
+                <h3>แหล่งเรียนรู้หลากหลาย</h3>
+                <p>มีทั้งวิดีโอ เอกสาร และแบบทดสอบให้เรียนรู้</p>
+            </li>
+        </ul>
+    </section>
+
+
+    <section id="course" class="section" style="background-color: var(--light-gray);">
+        <h2 class="section-title">รายวิชาแนะนำ</h2>
+        <div class="courses-grid">
+            <div class="course-card">
+                <img src="https://lms.thaimooc.org/asset-v1:TAT+TAT001+2022+type@asset+block@Artboard_1.png"
+                    alt="การตลาดท่องเที่ยวอย่างรับผิดชอบ" class="course-image">
+                <div class="course-info">
+                    <h3 class="course-title">การตลาดท่องเที่ยวอย่างรับผิดชอบ | Responsible Tourism Marketing</h3>
+                    <p class="course-provider">RU</p>
+                    <p class="course-publisher">การท่องเที่ยวแห่งประเทศไทย</p>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="https://lms.thaimooc.org/asset-v1:IPST+IPST001+2023+type@asset+block@course-card.png"
+                    alt="Coding for All" class="course-image">
+                <div class="course-info">
+                    <h3 class="course-title">Coding for All - ฉลาดคิด พิชิตยุคดิจิทัล</h3>
+                    <p class="course-provider">RU</p>
+                    <p class="course-publisher">สถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี</p>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="https://lms.thaimooc.org/asset-v1:CMU+CMU029+2019+type@asset+block@Baner_Psychology_in_Work3.jpg"
+                    alt="จิตวิทยาประยุกต์ในการทำงาน" class="course-image">
+                <div class="course-info">
+                    <h3 class="course-title">จิตวิทยาประยุกต์ในการทำงาน เพื่อความสำเร็จ ความสุข และความมั่งคั่ง</h3>
+                    <p class="course-provider">RU</p>
+                    <p class="course-publisher">มหาวิทยาลัยเชียงใหม่</p>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="https://lms.thaimooc.org/asset-v1:CMU+CMU040+2020+type@asset+block@banner_cmu040_new.jpg"
+                    alt="ทักษะการสื่อสารระหว่างบุคคลในการทำงาน" class="course-image">
+                <div class="course-info">
+                    <h3 class="course-title">ทักษะการสื่อสารระหว่างบุคคลในการทำงาน</h3>
+                    <p class="course-provider">RU</p>
+                    <p class="course-publisher">มหาวิทยาลัยเชียงใหม่</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-section">
+        <h2 class="section-title">เสียงตอบรับจากผู้เรียน</h2>
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"ระบบใช้งานง่ายมาก เรียนได้ทุกที่
+                    ทำให้ผมสามารถจัดการเวลาเรียนได้อย่างมีประสิทธิภาพ"</p>
+                <div class="testimonial-author">
+                    <img src="/image/user1.png" alt="ผู้ใช้ 1">
+                    <div>
+                        <p class="author-name">นายสมชาย ใจดี</p>
+                        <p class="author-title">นักศึกษาคณะวิศวกรรมศาสตร์</p>
+                    </div>
+                </div>
+            </div>
+            <!-- เพิ่ม testimonial อื่นๆ ตามต้องการ -->
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number" data-count="100">0</span>
+                <span class="stat-label">หลักสูตรออนไลน์</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="5000">0</span>
+                <span class="stat-label">ผู้เรียน</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="50">0</span>
+                <span class="stat-label">ผู้สอน</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">เรียนได้ตลอดเวลา</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <h2 class="section-title">ข่าวสารและประกาศ</h2>
+        <div class="news-container">
+            <div class="news-card">
+                <div class="news-date">15 มิ.ย. 2566</div>
+                <h3 class="news-title">ระบบจะปิดปรับปรุงในวันที่ 20 มิ.ย.</h3>
+                <p class="news-excerpt">ระบบจะปิดให้บริการตั้งแต่เวลา 00:00 - 06:00 น. สำหรับการปรับปรุงระบบ...</p>
+                <a href="#" class="news-link">อ่านต่อ</a>
+            </div>
+            <div class="news-card">
+                <div class="news-date">15 มิ.ย. 2566</div>
+                <h3 class="news-title">ระบบจะปิดปรับปรุงในวันที่ 20 มิ.ย.</h3>
+                <p class="news-excerpt">ระบบจะปิดให้บริการตั้งแต่เวลา 00:00 - 06:00 น. สำหรับการปรับปรุงระบบ...</p>
+                <a href="#" class="news-link">อ่านต่อ</a>
+            </div>
+        </div>
+        <a href="/news.html" class="view-all">ดูทั้งหมด</a>
+    </section>
+
+    <section class="partners-section">
+        <h2 class="section-title">ผู้สนับสนุนโครงการ</h2>
+        <div class="partners-grid">
+            <img src="/image/partner.jpg" alt="คณะวิศวกรรมศาสตร์">
+        </div>
+    </section>
+
+    <section id="about us" class="section">
+        <h2 class="section-title">เกี่ยวกับเรา</h2>
+        <p>
+            ระบบนี้จัดทำขึ้นโดยนิสิตคณะวิศวกรรมศาสตร์ สาขาคอมพิวเตอร์และอิเล็กทรอนิกส์ มหาวิทยาลัยรามคำแหง
+            เพื่อเป็นส่วนหนึ่งในการพัฒนาสื่อการเรียนรู้ผ่านระบบออนไลน์ ช่วยให้ผู้เรียนสามารถเข้าถึงเนื้อหาได้ทุกที่
+            ทุกเวลา
+            โดยหวังว่าจะเป็นประโยชน์ต่อการเรียนรู้ของทุกคน ไม่ว่าจะอยู่ที่ใดก็ตาม
+        </p>
+        <img src="/image/about us.jpg" alt="about us"
+            style="display: block; margin: 50px auto; max-width: 500px; height: auto;">
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/image/logo1.png" alt="Ru Logo">
+                <p>โครงงานพัฒนาระบบ e-Learning
+                    <br>โดยนิสิตคณะวิศวกรรมศาสตร์ สาขาคอมพิวเตอร์และอิเล็กทรอนิกส์
+                    <br>มหาวิทยาลัยรามคำแหง
+                    <br>2086 ถ.รามคำแหง หัวหมาก บางกะปิ กรุงเทพฯ 10240
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+                <h3>ลิงก์ที่เกี่ยวข้อง</h3>
+                <ul>
+                    <li><a href="https://www.ru.ac.th/" target="_blank" rel="noopener">มหาวิทยาลัยรามคำแหง</a></li>
+                    <li><a href="http://www.eng.ru.ac.th/หน้าแรก" target="_blank" rel="noopener">คณะวิศวกรรมศาสตร์
+                            มหาวิทยาลัยรามคำแหง</a></li>
+
+                </ul>
+            </div>
+
+            <div id="footer" class="footer-contact">
+                <h3>ข้อมูลการติดต่อ</h3>
+                <div class="contact-info">
+                    <p> คณะวิศวกรรมศาสตร์ มหาวิทยาลัยรามคำแหง</p>
+                    <p> 2086 ถนนรามคำแหง แขวงหัวหมาก เขตบางกะปิ กรุงเทพมหานคร 10240</p>
+                    <p> เวลาทำการ: วันจันทร์–ศุกร์ เวลา 08.30–16.30 น.</p>
+                    <p> โทรศัพท์: 02-310-8000</p>
+                    <p> เว็บไซต์ : <a href="http://www.eng.ru.ac.th" target="_blank" rel="noopener">www.eng.ru.ac.th</a>
+                    </p>
+                    <p> Email (สำหรับติดต่อผู้พัฒนา) : </p>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>สงวนลิขสิทธิ์ © 2568 โดยนิสิตคณะวิศวกรรมศาสตร์ มหาวิทยาลัยรามคำแหง</p>
+            <p><a href="/privacy-policy.html" style="color: var(--white);">นโยบายคุ้มครองข้อมูลส่วนบุคคล</a></p>
+        </div>
+        <!-- Cookie Banner -->
+        <div id="cookieBanner" class="cookie-banner">
+            <p>
+                เราใช้คุกกี้เพื่อพัฒนาประสิทธิภาพ และประสบการณ์ที่ดีในการใช้เว็บไซต์ของคุณ
+                คุณสามารถศึกษารายละเอียดได้ที่ <a href="/privacy-policy.html">นโยบายความเป็นส่วนตัว</a>
+                และสามารถจัดการความเป็นส่วนตัวเองได้โดยคลิกที่
+            </p>
+            <div class="cookie-buttons">
+                <button id="cookieSettings">ตั้งค่า</button>
+                <button id="cookieDecline">ไม่ยอมรับ</button>
+                <button id="cookieAccept">ยอมรับ</button>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // 1. ฟังก์ชันเคาน์เตอร์
+        function animateCounters() {
+            document.querySelectorAll('.stat-number[data-count]').forEach(counter => {
+                const target = +counter.dataset.count;
+                const duration = 2000;
+                let start = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    counter.textContent = Math.floor(progress * target) + '+';
+                    if (progress < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            });
+        }
+
+        // 2. ไล่แสดง Feature Cards
+        function revealFeatures() {
+            document.querySelectorAll('.feature-card').forEach((card, i) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 + i * 200);
+            });
+        }
+
+        // 3. ไล่แสดง Stat Items เมื่ออยู่ใน viewport
+        function revealStats() {
+            const stats = document.querySelectorAll('.stat-item');
+            stats.forEach((item, i) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, i * 200);
+            });
+            setTimeout(animateCounters, 800);
+        }
+
+        // 4. ใช้ IntersectionObserver แทน scroll listener
+        function watchStats() {
+            const section = document.querySelector('.stats-section');
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    revealStats();
+                    io.disconnect();
+                }
+            }, { threshold: 0.2 });
+            io.observe(section);
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                // ซ่อน loading screen
+                document.getElementById('loadingScreen').classList.add('hidden');
+                // สไลด์ .hero-split ขึ้น
+                document.querySelector('.hero-split').classList.add('visible');
+                // ไล่แสดง feature cards
+                revealFeatures();
+                // เริ่มสังเกต stats section
+                watchStats();
+                // d) ใช้ IntersectionObserver กับ hero-split ทันทีที่ loader หาย
+                const hero = document.querySelector('.hero-split');
+                const heroIo = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting) {
+                        hero.classList.add('visible');
+                        heroIo.disconnect();
+                    }
+                }, { threshold: 0.2 });
+                heroIo.observe(hero);
+            }, 2500);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.feature-card');
+            const grid = document.querySelector('.features-grid');
+
+            // 4. ตั้ง IntersectionObserver ดูว่า .features-grid เข้า viewport ยัง
+            const io = new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    // 5. สร้างสตาเกอร์สไตเกอร์เพื่อสแตกการ์ดแต่ละใบ
+                    cards.forEach((card, idx) => {
+                        setTimeout(() => card.classList.add('animate'), idx * 150);
+                    });
+                    observer.disconnect();
+                }
+            }, {
+                threshold: 0.3  // ปรับได้ว่าให้เริ่มตอนเลื่อนเข้าไปกี่เปอร์เซ็นต์
+            });
+
+            io.observe(grid);
+        });
+        // 1. ฟังก์ชันช่วยอ่าน/เขียน Cookie
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = name + "=" + value + ";path=/;expires=" + d.toUTCString();
+        }
+        function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+            return match ? match[1] : '';
+        }
+
+        // 2. ควบคุมการแสดงผล Banner
+        function showCookieBanner() {
+            if (!getCookie('cookieConsent')) {
+                document.getElementById('cookieBanner').classList.add('visible');
+            }
+        }
+        function hideCookieBanner() {
+            document.getElementById('cookieBanner').classList.remove('visible');
+        }
+
+        // 3. เมื่อโหลดหน้าเสร็จ (หลัง loading screen หายและอนิเมชันอื่นๆ เรียบร้อย)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                // ซ่อน loading screen, สไลด์ hero, reveal features, watchStats ...
+                document.getElementById('loadingScreen').classList.add('hidden');
+                document.querySelector('.hero-split').classList.add('visible');
+                revealFeatures();
+                watchStats();
+                // … (IntersectionObserver for hero ถ้าต้องการอีกชั้น) …
+
+                // แสดง Cookie Banner
+                showCookieBanner();
+            }, 2500);
+        });
+
+        // 4. ใส่ event ให้ปุ่มทั้งสาม
+        document.getElementById('cookieAccept').addEventListener('click', () => {
+            setCookie('cookieConsent', 'accepted', 365);
+            hideCookieBanner();
+        });
+        document.getElementById('cookieDecline').addEventListener('click', () => {
+            setCookie('cookieConsent', 'declined', 365);
+            hideCookieBanner();
+        });
+        document.getElementById('cookieSettings').addEventListener('click', () => {
+            // เปิด modal หรือพาไปหน้า settings
+            alert('เปิดหน้าตั้งค่าคุกกี้');
+        });
+    </script>
+</body>
+
+</html>
