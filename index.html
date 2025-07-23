@@ -250,7 +250,16 @@
                     </p>
                     <p> Email (สำหรับติดต่อผู้พัฒนา) : </p>
                 </div>
-
+                
+            <!-- Popup -->
+        <div id="fatherPopup" class="modal-overlay">
+            <div class="modal-dialog">
+                <button class="modal-close">&times;</button>
+                <a href="login.html">
+                    <img src="image/popup-father.jpg" alt="ทรงพระเจริญ" class="w-full h-auto">
+                </a>
+            </div>
+        </div>
 
             </div>
         </div>
@@ -402,6 +411,49 @@
             }, 2500);
         });
 
+        // ฟังก์ชันแสดง popup 
+        function showPopup() {
+            const popup = document.getElementById('fatherPopup');
+            popup.classList.remove('closing');
+            popup.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ฟังก์ชันซ่อน popup (ไม่เปลี่ยน)
+        function hidePopup() {
+            const popup = document.getElementById('fatherPopup');
+            popup.classList.add('closing');
+            setTimeout(() => {
+                popup.classList.remove('open', 'closing');
+                document.body.style.overflow = '';
+            }, 400);
+        }
+
+        // แสดง popup เมื่อโหลดหน้าเว็บเสร็จ แต่เฉพาะวันที่ 23–26
+        window.addEventListener('load', () => {
+            const today = new Date();
+            const day = today.getDate();
+            // ถ้าอยากจำกัดเฉพาะเดือนกรกฎาคม ให้เช็คด้วย:
+            // const month = today.getMonth(); // 0=มกราคม … 6=กรกฎาคม
+            // if (month === 6 && day >= 23 && day <= 26) { … }
+
+            if (day >= 23 && day <= 28) {
+                // รอให้ทุกอย่าง load เสร็จ แล้วหน่วงอีก 3.5 วินาที ก่อนขึ้น
+                setTimeout(showPopup, 3500);
+            }
+        });
+
+        // ปิด popup เมื่อคลิกมุมกากบาท
+        document.querySelector('#fatherPopup .modal-close')
+            .addEventListener('click', hidePopup);
+
+        // ปิด popup เมื่อคลิกพื้นที่ว่างรอบนอก
+        document.getElementById('fatherPopup')
+            .addEventListener('click', e => {
+                if (e.target === e.currentTarget) hidePopup();
+            });
+
+        
         // 4. ใส่ event ให้ปุ่มทั้งสาม
         document.getElementById('cookieAccept').addEventListener('click', () => {
             setCookie('cookieConsent', 'accepted', 365);
