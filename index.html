@@ -282,7 +282,7 @@
             </div>
         </div>
     </footer>
-    <script>
+   <script>
         // 1. ฟังก์ชันเคาน์เตอร์
         function animateCounters() {
             document.querySelectorAll('.stat-number[data-count]').forEach(counter => {
@@ -453,7 +453,9 @@
                 if (e.target === e.currentTarget) hidePopup();
             });
 
-        
+
+
+
         // 4. ใส่ event ให้ปุ่มทั้งสาม
         document.getElementById('cookieAccept').addEventListener('click', () => {
             setCookie('cookieConsent', 'accepted', 365);
