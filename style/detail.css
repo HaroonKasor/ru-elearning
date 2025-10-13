@@ -1,0 +1,996 @@
+:root {
+    --primary-color: #0f83e2;
+    --secondary-color: #7fd0ff;
+    --white: #fff;
+    --text-on-primary: #fff;
+    --maxw: 1280px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    font-family: 'Sarabun', sans-serif;
+    color: var(--ink);
+    background: #fff
+}
+
+/* Page fade-in */
+.page-enter {
+    opacity: .001
+}
+
+.page-enter.page-ready {
+    opacity: 1;
+    transition: opacity .35s ease;
+}
+
+/* ลด motion ให้ปิดทรานสิชัน */
+@media (prefers-reduced-motion: reduce) {
+
+    .page-enter,
+    .page-enter.page-ready {
+        opacity: 1 !important;
+        transition: none !important;
+    }
+}
+
+
+
+
+/* ====== NAVBAR / FOOTER: ใช้ของเดิม ====== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, .06);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px
+}
+
+.logo {
+    height: 40px;
+    display: flex;
+    align-items: center
+}
+
+.nav-links {
+    display: flex;
+    gap: 56px;
+    margin-left: auto;
+    margin-right: 56px
+}
+
+.nav-links a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500
+}
+
+.user-profile {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    cursor: pointer
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #008DD0
+}
+
+.user-name {
+    color: #4b5563
+}
+
+/* User Dropdown */
+.user-dropdown {
+    position: absolute;
+    width: 240px;
+    height: 198px;
+    right: 32px;
+    top: 56px;
+    background: #FFFFFF;
+    border: 0.5px solid #A4B8C7;
+    border-radius: 16px;
+    box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1001;
+}
+
+.dropdown-arrow {
+    width: 24px;
+    height: 50px;
+    background-color: #6B7280;
+    /* สีลูกศร */
+    -webkit-mask: no-repeat center / 100% 100% url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    mask: no-repeat center / 100% 100% url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    transition: transform .2s ease, background-color .2s ease;
+}
+
+
+
+.user-profile.open .dropdown-arrow {
+    transform: rotate(180deg);
+    background-color: #008DD0;
+    /* เปลี่ยนสีตอนเปิด (option) */
+}
+
+.user-dropdown.active {
+    display: block;
+}
+
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 15px;
+    border-bottom: 0.5px solid #C6D3DC;
+}
+
+.dropdown-avatar {
+    width: 32px;
+    height: 32px;
+    background: #0f83e2;
+    border-radius: 50%;
+}
+
+.dropdown-user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-name {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.dropdown-email {
+    font-size: 14px;
+    line-height: 16px;
+    color: rgba(36, 49, 54, 0.8);
+}
+
+.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 15px;
+}
+
+.dropdown-item {
+    font-size: 14px;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+.dropdown-menu .dropdown-item {
+    display: block;
+    padding: 8px 0;
+    text-decoration: none;
+    color: #243136;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: #008DD0;
+}
+
+/* Breadcrumb */
+/* ===== Breadcrumb ===== */
+.breadcrumb {
+    max-width: var(--maxw, 1200px);
+    margin: 88px auto 16px;
+    /* ขยับลงจาก navbar fixed */
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-height: 1;
+}
+
+.breadcrumb .crumb {
+    font-weight: 500;
+    font-size: 20px;
+    /* ให้พอดีกับตัวอย่าง */
+    color: rgba(36, 49, 54, .88);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.breadcrumb .crumb:hover {
+    color: #0f83e2;
+}
+
+.breadcrumb .crumb.current {
+    color: #0f83e2;
+    /* ชื่อคอร์สเป็นสีน้ำเงิน */
+}
+
+/* ไอคอนลูกศร */
+.breadcrumb .chev {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+    background: #9aa3ab;
+    -webkit-mask: no-repeat center/100% 100% url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 6l6 6-6 6' fill='none' stroke='%239aa3ab' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    mask: no-repeat center/100% 100% url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 6l6 6-6 6' fill='none' stroke='%239aa3ab' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+
+/* ถ้าชื่อคอร์สยาวมากให้ตัดด้วย … แต่ยังคงเลย์เอาต์ */
+@media (max-width: 820px) {
+    .breadcrumb {
+        gap: 10px;
+        margin-top: 76px;
+    }
+
+    .breadcrumb .crumb.current {
+        max-width: 60vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+}
+
+
+/* ====== PAGE WRAPPER ====== */
+.page {
+    max-width: var(--maxw);
+    margin: 24px auto;
+    padding: 0 24px
+}
+
+/* ====== HERO ====== */
+.hero {
+    display: grid;
+    grid-template-columns: 1.2fr .7fr;
+    gap: 20px
+}
+
+.hero-card {
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    align-items: flex-end;
+    color: #fff;
+    background: linear-gradient(135deg, #0b1720 0%, #17344b 100%);
+    border-radius: 24px;
+    overflow: hidden;
+    /* ตัดภาพส่วนเกิน */
+}
+
+.hero-img {
+    position: absolute;
+    inset: 0;
+    opacity: .22;
+    /* โปร่งนิดหน่อย */
+    pointer-events: none;
+    /* คลิกทะลุได้ (ปุ่มยังคลิกได้) */
+}
+
+.hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* ให้ภาพคลุมเต็มกรอบ */
+    display: block;
+}
+
+.hero-content {
+    position: relative;
+    padding: 24px 24px 20px
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(127, 208, 255, .15);
+    color: #7fd0ff;
+    border: 1px solid rgba(127, 208, 255, .35);
+    border-radius: 9999px;
+    padding: 6px 12px;
+    font-weight: 600
+}
+
+.hero-title {
+    font-size: 40px;
+    line-height: 1.1;
+    margin: 14px 0 6px
+}
+
+.hero-teacher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: .9
+}
+
+.hero-teacher .av {
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    background: #7fd0ff
+}
+
+.play-btn {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 84px;
+    height: 84px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, .9);
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(2px);
+    cursor: pointer;
+    transition: transform .12s ease
+}
+
+.play-btn:hover {
+    transform: scale(1.04)
+}
+
+.play-btn i {
+    width: 28px;
+    height: 28px;
+    background: #0b3a6d;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M8 5v14l11-7z'/></svg>") no-repeat center/100% 100%;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M8 5v14l11-7z'/></svg>") no-repeat center/100% 100%
+}
+
+/* Enroll card */
+.enroll {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, .06);
+    height: max-content;
+    position: sticky;
+    top: 80px
+}
+
+.enroll-title {
+    font-weight: 700;
+    margin: 4px 0 10px
+}
+
+.enroll-list {
+    display: grid;
+    gap: 8px;
+    margin: 12px 0 16px
+}
+
+.enroll-item {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 14px
+}
+
+.enroll .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 16px;
+    gap: 10px;
+
+    width: 100%;
+    max-width: 272px;
+    /* ให้ขนาดเท่าปุ่มในการ์ด */
+    height: 32px;
+    margin: 8px auto 0;
+    /* จัดให้อยู่กึ่งกลางใน aside */
+
+    background: #0f83e2;
+    color: #FEFEFE;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    cursor: pointer;
+
+    /* เล็กน้อยให้ดูนุ่ม */
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .08), 0 4px 10px rgba(15, 131, 226, .18);
+    transition: background .2s ease, box-shadow .2s ease, transform .05s ease;
+}
+
+.enroll .btn:hover {
+    background: #0d76cb;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .08), 0 8px 18px rgba(15, 131, 226, .28);
+}
+
+.enroll .btn:active {
+    transform: translateY(1px);
+}
+
+.enroll .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0f83e2;
+}
+
+.enroll .guarantee {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.enroll .cert {
+    width: 100%;
+    height: 120px;
+    background: #eef6ff;
+    border: 1px dashed #b8d7ff;
+    border-radius: 10px;
+    margin-top: 10px
+}
+
+.enroll .guarantee{
+  justify-self: center;   /* ถ้า .enroll เป็น grid */
+  align-self: center;     /* ถ้า .enroll เป็น flex */
+  margin: 12px 0 8px;
+  text-align: center;
+}
+
+.cert {
+    background: #fff !important;
+    /* หรือใช้ transparent ถ้าการ์ดด้านหลังเป็นสีขาวอยู่แล้ว */
+    border: none !important;
+    box-shadow: none !important;
+    /* กันกรณีมีเงา/เส้นขอบจากที่อื่น */
+}
+
+
+
+/* ====== TABS ====== */
+/* แนวแท็บ */
+.tabs {
+    display: flex;
+    gap: 64px;
+    /* ระยะห่างแต่ละแท็บ */
+    align-items: flex-end;
+    border-bottom: 2px solid #e5e7eb;
+    /* เส้นฐานจาง ๆ ยาวทั้งแถว */
+    padding-bottom: 10px;
+    margin: 12px 0 24px;
+}
+
+/* ปุ่มแท็บ */
+.tab {
+    position: relative;
+    padding: 6px 0;
+    font-weight: 700;
+    font-size: 16px;
+    /* ปรับได้ 24–32px */
+    line-height: 1.2;
+    color: #0e1a2a;
+    /* น้ำเงินเข้ม */
+    opacity: .65;
+    cursor: pointer;
+    transition: color .2s ease, opacity .2s ease;
+}
+
+.tab:hover {
+    opacity: .85;
+}
+
+/* เส้นใต้ของแท็บ (เฉพาะ active) */
+.tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -12px;
+    /* ให้อยู่ทับเส้นฐาน */
+    height: 4px;
+    background: #0f83e2;
+    /* สีฟ้าหลัก */
+    border-radius: 9999px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform .25s ease;
+}
+
+/* สถานะ active แบบในภาพ */
+.tab.active {
+    color: #0f83e2;
+    opacity: 1;
+}
+
+.tab.active::after {
+    transform: scaleX(1);
+}
+
+/* จอเล็ก */
+@media (max-width: 768px) {
+    .tabs {
+        gap: 28px;
+        overflow-x: auto;
+    }
+
+    .tab {
+        font-size: 20px;
+        white-space: nowrap;
+    }
+}
+
+
+.panel {
+    display: none;
+    animation: fade .25s ease
+}
+
+.panel.active {
+    display: block
+}
+
+@keyframes fade {
+    from {
+        opacity: .4;
+        transform: translateY(6px)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+.panel h3 {
+    margin: 10px 0 12px
+}
+
+ul.feature {
+    margin: 10px 0 8px;
+    padding-left: 20px
+}
+
+ul.feature li {
+    margin: 6px 0
+}
+
+/* ====== RECOMMENDED ====== */
+.reco-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 36px 0 16px
+}
+
+.reco-title i {
+    width: 8px;
+    height: 28px;
+    background: var(--primary);
+    border-radius: 3px
+}
+
+.reco {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px
+}
+
+.card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 6px 16px rgba(16, 24, 40, .06);
+    overflow: hidden
+}
+
+.card .thumb {
+    width: 100%;
+    /* ใช้เต็มความกว้างการ์ด */
+    aspect-ratio: 16 / 9;
+    /* หรือใช้ height: 176px ก็ได้ */
+    background: #C8D5DE;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.card .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* ครอบให้เต็ม ตัดส่วนเกิน */
+    display: block;
+    /* ตัดช่องว่างบรรทัดล่างของ img */
+    border-radius: inherit;
+    /* โค้งตามกรอบ */
+}
+
+.card .body {
+    padding: 14px
+}
+
+.badge {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 9999px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: -12px;
+    margin-left: 12px
+}
+
+@media (max-width:980px) {
+    .hero {
+        grid-template-columns: 1fr
+    }
+
+    .enroll {
+        position: static
+    }
+}
+
+/* ====== popup modul ====== */
+/* ===== Modal (สวยขึ้น) ===== */
+.modal{position:fixed;inset:0;display:none;z-index:1100;}
+.modal.is-open{display:block;}
+
+.modal__overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(14,24,40,.35), rgba(14,24,40,.55));
+  backdrop-filter:saturate(150%) blur(6px);
+  opacity:0;animation:fadeIn .22s forwards;
+}
+
+/* แผ่นกล่อง */
+.modal__dialog{
+  position:relative;width:min(620px, calc(100% - 28px));
+  margin:72px auto;background:#ffffff;border-radius:20px;
+  transform:translateY(12px) scale(.985);opacity:0;overflow:hidden;
+  animation:popIn .24s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.modal--elevated{
+  box-shadow:
+    0 24px 40px rgba(9,18,28,.08),
+    0 6px 18px rgba(9,18,28,.06),
+    inset 0 1px 0 #f2f4f7;
+}
+
+/* Header */
+.modal__header{
+  display:flex;align-items:center;gap:12px;
+  padding:18px 20px 12px;border-bottom:1px solid #eef2f6;
+  background:linear-gradient(180deg,#fff, #fbfdff);
+}
+.modal__icon{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,#0f83e2,#7fd0ff22);
+  display:grid;place-items:center;box-shadow:0 6px 16px rgba(15,131,226,.18);
+}
+.modal__icon-glyph{
+  width:20px;height:20px;background:#fff;
+  -webkit-mask:no-repeat center/100% 100%
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3l9 4.5-9 4.5L3 7.5 12 3zm0 7.9l9-4.5V17c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2V6.4l7 3.5z' fill='%23ffffff'/></svg>");
+          mask:no-repeat center/100% 100%
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 3l9 4.5-9 4.5L3 7.5 12 3zm0 7.9l9-4.5V17c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2V6.4l7 3.5z' fill='%23ffffff'/></svg>");
+}
+.modal__title{font-size:20px;font-weight:700;color:#0f2940;}
+.modal__subtitle{margin:2px 0 0;color:#667085;font-size:14px}
+
+/* Body */
+.modal__body{padding:14px 20px 18px;color:#243136;}
+.modal__list{margin:6px 0 0 18px}
+
+/* Footer */
+.modal__footer{
+  display:flex;justify-content:flex-end;gap:12px;
+  padding:14px 20px;background:#f8fafc;border-top:1px solid #eef2f6;
+}
+
+/* ปุ่ม */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:40px;padding:0 16px;border-radius:9999px;border:1px solid transparent;
+  font-weight:700;cursor:pointer;user-select:none;
+  transition:transform .06s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+.btn--primary{
+  background:#0f83e2;color:#fff;
+  box-shadow:0 8px 18px rgba(15,131,226,.22);
+}
+.btn--primary:hover{box-shadow:0 10px 22px rgba(15,131,226,.28)}
+.btn--primary:active{transform:translateY(1px)}
+.btn--ghost{
+  background:#fff;color:#0f2940;border-color:#dee3ea;
+}
+.btn--ghost:hover{background:#f6f8fb}
+
+/* ปุ่มปิด */
+.modal__close{
+  position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;cursor:pointer;
+  background:#eff3f7;border-radius:10px;transition:transform .06s ease, background .2s ease;
+  -webkit-mask:no-repeat center/18px url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 6l12 12M18 6L6 18' stroke='%23000' stroke-width='2' stroke-linecap='round'/></svg>");
+          mask:no-repeat center/18px url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 6l12 12M18 6L6 18' stroke='%23000' stroke-width='2' stroke-linecap='round'/></svg>");
+}
+.modal__close:hover{background:#e3e9f0}
+.modal__close:active{transform:scale(.97)}
+
+@keyframes popIn{to{transform:translateY(0) scale(1);opacity:1}}
+@keyframes fadeIn{to{opacity:1}}
+
+/* ===== Toast ===== */
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(12px);
+  display:flex;align-items:center;gap:10px;
+  background:#0f1e2b;color:#fff;padding:10px 14px;border-radius:12px;
+  box-shadow:0 12px 24px rgba(0,0,0,.22);opacity:0;z-index:1200;
+}
+.toast.show{animation:toastIn .25s ease forwards, toastOut .25s ease 2.5s forwards;}
+.toast__icon{
+  width:18px;height:18px;background:#7fdba3;border-radius:50%;
+  -webkit-mask:no-repeat center/14px url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20 6L9 17l-5-5' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+          mask:no-repeat center/14px url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20 6L9 17l-5-5' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+@keyframes toastIn{to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes toastOut{to{opacity:0;transform:translateX(-50%) translateY(12px)}}
+
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 5% 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.footer-logo img {
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.footer-links h3,
+.footer-contact h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-links h3::after,
+.footer-contact h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color .3s;
+}
+
+.footer-links a:hover {
+    color: var(--secondary-color);
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: .9rem;
+}
+
+/* ปุ่มอีเมลทรงแคปซูล (ออกแบบให้ใช้ได้ทั้งพื้นเข้ม/พื้นอ่อน) */
+.email-pill {
+    --pill-fg: #fff;
+    /* สีตัวอักษร/ไอคอนเริ่มต้น (พื้นหลังเข้ม) */
+    --pill-fg-hover: #0f83e2;
+    /* สีตัวอักษร/ไอคอนตอนโฮเวอร์ */
+    --pill-bg: transparent;
+    /* พื้นหลังเริ่มต้นโปร่ง */
+    --pill-bg-hover: #fff;
+    /* พื้นหลังตอนโฮเวอร์ */
+    --pill-border: #fff;
+    /* สีเส้นขอบ */
+
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    border: 2px solid var(--pill-border);
+    border-radius: 9999px;
+    color: var(--pill-fg);
+    background: var(--pill-bg);
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .05s ease;
+}
+
+.email-pill:hover {
+    background: var(--pill-bg-hover);
+    color: var(--pill-fg-hover);
+    border-color: var(--pill-bg-hover);
+}
+
+.email-pill:active {
+    transform: translateY(1px);
+}
+
+.email-pill:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .35);
+}
+
+/* ไอคอนซอง (ใช้ currentColor → สีตามตัวอักษร) */
+.email-pill__icon {
+    width: 22px;
+    height: 16px;
+    background: currentColor;
+    -webkit-mask: no-repeat center / 100% 100% url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm9 7 9-6H3l9 6zm0 2L3 8v9h18V8l-9 6z'/></svg>");
+    mask: no-repeat center / 100% 100% url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm9 7 9-6H3l9 6zm0 2L3 8v9h18V8l-9 6z'/></svg>");
+}
+
+/* ถ้าใช้พื้นหลังอ่อนและอยากให้เส้น/ตัวหนังสือเข้ม ให้สลับตัวแปรแค่นี้ */
+/*
+.email-pill{ --pill-fg:#0f83e2; --pill-border:#0f83e2; --pill-fg-hover:#fff; --pill-bg-hover:#0f83e2; }
+*/
+
+/* ปุ่มอีเมลทรงแคปซูล (ออกแบบให้ใช้ได้ทั้งพื้นเข้ม/พื้นอ่อน) */
+.number-pill {
+    --pill-fg: #fff;
+    /* สีตัวอักษร/ไอคอนเริ่มต้น (พื้นหลังเข้ม) */
+    --pill-fg-hover: #0f83e2;
+    /* สีตัวอักษร/ไอคอนตอนโฮเวอร์ */
+    --pill-bg: transparent;
+    /* พื้นหลังเริ่มต้นโปร่ง */
+    --pill-bg-hover: #fff;
+    /* พื้นหลังตอนโฮเวอร์ */
+    --pill-border: #fff;
+    /* สีเส้นขอบ */
+
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    border: 2px solid var(--pill-border);
+    border-radius: 9999px;
+    color: var(--pill-fg);
+    background: var(--pill-bg);
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .05s ease;
+}
+
+.number-pill:hover {
+    background: var(--pill-bg-hover);
+    color: var(--pill-fg-hover);
+    border-color: var(--pill-bg-hover);
+}
+
+.number-pill:active {
+    transform: translateY(1px);
+}
+
+.number-pill:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .35);
+}
+
+/* ไอคอนซอง (ใช้ currentColor → สีตามตัวอักษร) */
+.number-pill__icon {
+    width: 22px;
+    height: 16px;
+    background: currentColor;
+    -webkit-mask: no-repeat center / 100% 100% url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm9 7 9-6H3l9 6zm0 2L3 8v9h18V8l-9 6z'/></svg>");
+    mask: no-repeat center / 100% 100% url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23000' d='M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm9 7 9-6H3l9 6zm0 2L3 8v9h18V8l-9 6z'/></svg>");
+}
+
+/* ถ้าใช้พื้นหลังอ่อนและอยากให้เส้น/ตัวหนังสือเข้ม ให้สลับตัวแปรแค่นี้ */
+/*
+.email-pill{ --pill-fg:#0f83e2; --pill-border:#0f83e2; --pill-fg-hover:#fff; --pill-bg-hover:#0f83e2; }
+*/
+
+
+.contact-info {
+    width: 327px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.contact-item {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 8px;
+    width: 229px;
+    height: 40px;
+    border: 1px solid #FFF9F5;
+    border-radius: 24px;
+}
+
+.contact-icon {
+    width: 24px;
+    height: 24px;
+    background: #FEF6F6;
+}
+
+.contact-text {
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 24px;
+    width: 1272px;
+    height: 64px;
+}
+
+.footer-bottom-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 1224px;
+}
+
+.footer-bottom-links {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    width: 357px;
+}
+
+.footer-bottom-text {
+    font-size: 12px;
+    line-height: 16px;
+    color: #FEF6F6;
+}
