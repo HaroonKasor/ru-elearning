@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UI Design with Figma – SkillUp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/skillup-froned/style/detail.css">
+    <script src="/script/config.js"></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- ===== NAVBAR (ของเดิม) ===== -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/skillup-froned/image/logocourse.png" alt="SkillUp Logo" style="width:140.5px;height:52.2px;border-radius:4px;">
+        </div>
+        <div class="nav-links">
+            <a href="#">หน้าหลัก</a>
+            <a href="/skillup-froned/userroom.html">หลักสูตร</a>
+            <a href="#">เกี่ยวกับเรา</a>
+            <a href="#">ติดต่อเรา</a>
+        </div>
+        <div class="user-profile" id="userProfile">
+            <div class="user-avatar"></div>
+            <div class="user-name">ฮารูน</div>
+            <div class="dropdown-arrow"></div>
+        </div>
+        <div class="user-dropdown" id="userDropdown">
+            <div class="dropdown-header">
+                <div class="dropdown-avatar"></div>
+                <div class="dropdown-user-info">
+                    <div class="dropdown-name">ฮารูน</div>
+                    <div class="dropdown-email">Haroon@gmail.com</div>
+                </div>
+            </div>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/skillup-froned/profile.html">ข้อมูลส่วนตัว</a>
+                <a class="dropdown-item" href="/skillup-froned/my-courses.html">หลักสูตรของฉัน</a>
+                <a class="dropdown-item" href="/skillup-froned/index.html">ออกจากระบบ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a class="crumb" href="/skillup-froned/userroom.html">หลักสูตร</a>
+        <span class="chev" aria-hidden="true"></span>
+        <span class="crumb current" id="bcCourse">UI Design with Figma</span>
+    </nav>
+
+
+    <!-- ===== PAGE ===== -->
+    <main class="page">
+
+        <!-- HERO -->
+        <section class="hero">
+            <article class="hero-card">
+                <div class="hero-img"><img src="/skillup-froned/image/course/vdo.jpg" alt="img"></div>
+                <button class="play-btn" aria-label="เล่นวิดีโอตัวอย่าง"><i></i></button>
+                <div class="hero-content">
+                    <span class="hero-badge">ONLINE COURSE</span>
+                    <h1 class="hero-title">UI Design with Figma</h1>
+                    <div class="hero-teacher">
+                        <span class="av"></span>
+                        <div>ธนศักดิ์ วงศ์ประยุธ (โค้ช) · Lead Designer at Ko-in</div>
+                    </div>
+                </div>
+            </article>
+
+            <aside class="enroll">
+                <div class="enroll-title" style="text-align: center;">UI Design with Figma</div>
+                <div class="enroll-list">
+                    <div class="enroll-item"><span>บทเรียน</span><strong>10 บท</strong></div>
+                    <div class="enroll-item"><span>แบบทดสอบ</span><strong>3 ชุด</strong></div>
+                    <div class="enroll-item"><span>ระยะเวลา</span><strong>5 ชั่วโมง</strong></div>
+                    <div class="enroll-item"><span>รีวิว</span><strong>5.0</strong></div>
+                </div>
+                <br>
+                <a href="#" class="btn" id="enrollBtn">ลงทะเบียนเรียน</a>
+                <br>
+                <div class="guarantee" style="text-align: center;">หลักสูตรนี้มีใบรับรองหลังเรียนจบ</div>
+                <div class="cert" aria-hidden="true">
+                    <img src="/skillup-froned/image/course/cert-placeholder.jpg" alt="ตัวอย่างใบรับรอง"
+                        style="width:100%;height:100%;object-fit:contain;">
+                </div>
+            </aside>
+        </section>
+
+        <nav class="tabs" id="tabs">
+            <div class="tab active" data-tab="detail">รายละเอียด</div>
+            <div class="tab" data-tab="teacher">ผู้สอน</div>
+            <div class="tab" data-tab="outline">เนื้อหาในคอร์ส</div>
+            <div class="tab" data-tab="review">รีวิวจากผู้เรียน</div>
+        </nav>
+
+
+        <section class="tabpanels">
+            <article class="panel active" id="panel-detail">
+                <h3>ภาพรวมคอร์ส</h3>
+                <p>ทำความเข้าใจแนวคิด User Interface (UI) และการออกแบบให้ใช้งานได้จริงบนเว็บ/แอป พร้อมระบบ Design System
+                    และการทำ Prototype ใน Figma</p>
+                <h3>คุณจะได้เรียนรู้</h3>
+                <ul class="feature">
+                    <li>พื้นฐาน Figma และเครื่องมือสำคัญ</li>
+                    <li>จัดการคอมโพเนนต์ / Auto-Layout / Responsive</li>
+                    <li>ระบบ Design System และ Animation</li>
+                </ul>
+            </article>
+
+            <article class="panel" id="panel-teacher">
+                <h3>เกี่ยวกับผู้สอน</h3>
+                <p>ธนศักดิ์ วงศ์ประยุธ (โค้ช) – Lead Designer ที่มีประสบการณ์ด้าน UX/UI มากกว่า 8 ปี</p>
+            </article>
+
+            <article class="panel" id="panel-outline">
+                <h3>หัวข้อเนื้อหา</h3>
+                <ul class="feature">
+                    <li>บทที่ 1 แนะนำโปรเจกต์และ Figma</li>
+                    <li>บทที่ 2 Auto-Layout & Components</li>
+                    <li>บทที่ 3 สร้าง Design System</li>
+                    <li>บทที่ 4 Prototype & Animation</li>
+                </ul>
+            </article>
+
+            <article class="panel" id="panel-review">
+                <h3>รีวิวจากผู้เรียน</h3>
+                <p>คะแนนเฉลี่ย 5.0 · “สอนเข้าใจง่ายและนำไปใช้ได้จริง”</p>
+            </article>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal" id="enrollModal" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="modal__overlay" data-close></div>
+
+            <div class="modal__dialog modal--elevated" role="document">
+                <button class="modal__close" aria-label="ปิดหน้าต่าง" data-close></button>
+
+                <header class="modal__header">
+                    <div class="modal__icon">
+                        <span class="modal__icon-glyph"></span>
+                    </div>
+                    <div class="modal__titles">
+                        <h3 class="modal__title">ยืนยันการลงทะเบียน</h3>
+                        <p class="modal__subtitle">ตรวจสอบรายละเอียดก่อนดำเนินการ</p>
+                    </div>
+                </header>
+
+                <div class="modal__body">
+                    <p style="margin-bottom:8px;">
+                        ยืนยันลงทะเบียนเรียนคอร์ส <strong>UI Design with Figma</strong> หรือไม่?
+                    </p>
+                    <ul class="modal__list">
+                        <li>บทเรียน 10 บท</li>
+                        <li>แบบทดสอบ 3 ชุด</li>
+                        <li>ระยะเวลาเรียน 5 ชั่วโมง</li>
+                    </ul>
+                </div>
+
+                <footer class="modal__footer">
+                    <button class="btn btn--ghost" data-close>ยกเลิก</button>
+                    <button class="btn btn--primary" id="confirmEnroll">ยืนยันลงทะเบียน</button>
+                </footer>
+            </div>
+        </div>
+
+        <!-- Toast แจ้งผลลัพธ์ -->
+        <div class="toast" id="toastOk" role="status" aria-live="polite">
+            <i class="toast__icon"></i>
+            <span>ลงทะเบียนสำเร็จ! ยินดีต้อนรับสู่คอร์ส 🎉</span>
+        </div>
+
+
+
+        <!-- RECOMMENDED -->
+        <div class="reco-title"><i></i>
+            <h2>หลักสูตรแนะนำ</h2>
+        </div>
+        <section class="reco">
+            <article class="card">
+                <div class="thumb"><img src="/skillup-froned/image/course/Default.png" alt="thumb"><span
+                        class="badge">Development</span></div>
+                <div class="body">
+                    <strong>การพัฒนาเว็บด้วย React</strong>
+                    <p class="muted">พื้นฐานสู่การสร้างเว็บเชิงโต้ตอบ</p>
+                </div>
+            </article>
+            <article class="card">
+                <div class="thumb"><img src="/skillup-froned/image/course/Default.png" alt="thumb"><span class="badge">Data</span>
+                </div>
+                <div class="body">
+                    <strong>วิเคราะห์ข้อมูลด้วย Python</strong>
+                    <p class="muted">Pandas · Matplotlib · Scikit-learn</p>
+                </div>
+            </article>
+            <article class="card">
+                <div class="thumb"><img src="/skillup-froned/image/course/Default.png" alt="thumb"><span class="badge">Design</span>
+                </div>
+                <div class="body">
+                    <strong>UI/UX สำหรับมือใหม่</strong>
+                    <p class="muted">ตั้งแต่ Wireframe ถึง Prototype</p>
+                </div>
+            </article>
+            <article class="card">
+                <div class="thumb"><img src="/skillup-froned/image/course/Default.png" alt="thumb"><span class="badge">Design</span>
+                </div>
+                <div class="body">
+                    <strong>UX/UI with Adobe XD</strong>
+                    <p class="muted">สร้างงาน UI อย่างมืออาชีพ</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER (ของเดิม) ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/skillup-froned/image/logo1.jpg" alt="SkillUp Logo">
+                <p>SkillUp – แพลตฟอร์ม e-Learning เพื่อการอัปสกิล / รีสกิล<br>โครงการพัฒนาโดยทีมวิศวกรรมซอฟต์แวร์</p>
+            </div>
+            <div class="footer-links">
+                <h3>ลิงก์ที่เกี่ยวข้อง</h3>
+                <ul>
+                    <li><a href="/skillup-froned/about.html">เกี่ยวกับ SkillUp</a></li>
+                    <li><a href="/skillup-froned/courses.html">คอร์สทั้งหมด</a></li>
+                    <li><a href="/skillup-froned/teach.html">สอนกับ SkillUp</a></li>
+                    <li><a href="/skillup-froned/pricing.html">แพ็กเกจสมาชิก</a></li>
+                    <li><a href="/skillup-froned/help.html">ศูนย์ช่วยเหลือ</a></li>
+                    <li><a href="/skillup-froned/privacy-policy.html">นโยบายความเป็นส่วนตัว</a></li>
+                    <li><a href="/skillup-froned/terms.html">ข้อกำหนดการใช้งาน</a></li>
+                </ul>
+            </div>
+            <div id="footer" class="footer-contact">
+                <h3>ข้อมูลการติดต่อ</h3>
+                <div class="contact-info">
+                    <p>SkillUp Co., Ltd.</p>
+                    <p>กรุงเทพฯ 10240, ประเทศไทย</p>
+                    <p>เวลาทำการ: จันทร์–ศุกร์ 08.30–16.30 น.</p>
+                    <a class="email-pill" href="mailto:dev@skillup.example">
+                        <span class="email-pill__icon" aria-hidden="true"></span>
+                        <span class="email-pill__text">dev@skillup.example</span>
+                    </a><br><br>
+                    <a class="number-pill" href="tel:020000000">
+                        <span class="number-pill__icon" aria-hidden="true"></span>
+                        <span class="number-pill__text">โทรศัพท์: 02-000-0000</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom"
+            style="text-align:center;border-top:1px solid rgba(255,255,255,.15);padding:24px 0;margin-top:24px;color:#fff">
+            <p>สงวนลิขสิทธิ์ © 2568 โดยนิสิตคณะวิศวกรรมศาสตร์ มหาวิทยาลัยรามคำแหง</p>
+        </div>
+    </footer>
+
+    <script>
+        // page fade-in
+        document.querySelector('main.page')?.classList.add('page-enter');
+        window.addEventListener('load', () => {
+            requestAnimationFrame(() => {
+                document.querySelector('main.page')?.classList.add('page-ready');
+            });
+        });
+
+        //breadcrumb
+        const h1 = document.querySelector('.section-title h1, h1');
+        const bc = document.getElementById('bcCourse');
+        if (h1 && bc) bc.textContent = h1.textContent.trim();
+
+        //popup endrollment
+
+        function openModal(id) {
+            const m = document.getElementById(id);
+            if (!m) return;
+            m.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+
+            const onKey = (e) => { if (e.key === 'Escape') closeModal(id, onKey); };
+            window.addEventListener('keydown', onKey);
+            m.dataset.keybind = '1';
+        }
+
+        function closeModal(id, keyHandler) {
+            const m = document.getElementById(id);
+            if (!m) return;
+            m.classList.remove('is-open');
+            document.body.style.overflow = '';
+            if (keyHandler || m.dataset.keybind) {
+                window.removeEventListener('keydown', keyHandler || (() => { }));
+                delete m.dataset.keybind;
+            }
+        }
+
+        // เปิดจากปุ่มลงทะเบียน (ต้องมี id="enrollBtn")
+        document.getElementById('enrollBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal('enrollModal');
+        });
+
+        // ปิดด้วย overlay/ปุ่มปิด
+        document.getElementById('enrollModal')?.addEventListener('click', (e) => {
+            if (e.target.matches('[data-close], .modal__overlay')) closeModal('enrollModal');
+        });
+
+        // ยืนยัน
+        document.getElementById('confirmEnroll')?.addEventListener('click', () => {
+            closeModal('enrollModal');
+            showToast('ลงทะเบียนสำเร็จ! ยินดีต้อนรับสู่คอร์ส 🎉');
+            // TODO: เรียก API/redirect ได้ที่นี่
+        });
+
+        function showToast(msg) {
+            const t = document.getElementById('toastOk');
+            if (!t) return;
+            t.querySelector('span')?.replaceWith(document.createElement('span'));
+            t.lastChild.textContent = msg; // อัปเดตข้อความ
+            t.classList.remove('show'); void t.offsetWidth; // รีสตาร์ทอนิเมชัน
+            t.classList.add('show');
+        }
+
+
+
+
+        // Toggle user dropdown
+        const userProfile = document.getElementById('userProfile');
+        const userDropdown = document.getElementById('userDropdown');
+
+        userProfile.addEventListener('click', function (e) {
+            e.stopPropagation(); // กันคลิกแล้วไปทริกเกอร์ตัวปิดข้างนอก
+            userDropdown.classList.toggle('active');
+            userProfile.classList.toggle('open'); // ใช้ควบคุมลูกศรหมุน/สี
+        });
+
+        // ปิดเมื่อคลิกนอก
+        document.addEventListener('click', function (event) {
+            if (!userProfile.contains(event.target) && !userDropdown.contains(event.target)) {
+                userDropdown.classList.remove('active');
+                userProfile.classList.remove('open');
+            }
+        });
+
+        document.querySelector('.dropdown-menu').addEventListener('click', e => {
+            if (e.target.matches('.dropdown-item')) {
+                document.getElementById('userDropdown').classList.remove('active');
+                document.getElementById('userProfile').classList.remove('open');
+            }
+        });
+
+        /* tabs */
+        const tabs = [...document.querySelectorAll('.tab')];
+        const panels = {
+            detail: document.getElementById('panel-detail'),
+            teacher: document.getElementById('panel-teacher'),
+            outline: document.getElementById('panel-outline'),
+            review: document.getElementById('panel-review'),
+        };
+        tabs.forEach(t => t.addEventListener('click', () => {
+            tabs.forEach(x => x.classList.remove('active'));
+            Object.values(panels).forEach(p => p.classList.remove('active'));
+            t.classList.add('active');
+            panels[t.dataset.tab].classList.add('active');
+
+            // เลื่อนเฉพาะจอเล็ก + ชดเชยความสูง navbar ~ 72px
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                const tabsEl = document.getElementById('tabs');
+                const y = tabsEl.getBoundingClientRect().top + window.pageYOffset - 72;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        }));
+
+        /* ปุ่มเล่นวิดีโอ (ตัวอย่าง) */
+        document.querySelector('.play-btn')?.addEventListener('click', () => {
+            alert('เล่นวิดีโอตัวอย่าง… (แนบวิดีโอจริงภายหลังได้)');
+        });
+
+    </script>
+</body>
+
+</html>

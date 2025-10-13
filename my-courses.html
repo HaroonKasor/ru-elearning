@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>หลักสูตรของฉัน - SkillUp</title>
+    <link rel="stylesheet" href="/skillup-froned/style/my-courses.css">
+    <script src="/script/config.js"></script>
+    <style>
+        /* บังคับสไตล์ dropdown หมวดหมู่ให้ทำงานแน่ ๆ */
+        .filters .category-select {
+            position: relative;
+            display: inline-block;
+            width: 400px !important;
+        }
+
+        .filters .category-trigger {
+            all: initial;
+            /* รีเซ็ตให้สะอาด ตัดผลจาก CSS อื่น ๆ */
+            font: inherit;
+            /* เอาฟอนต์จาก body */
+            box-sizing: border-box;
+            width: 100% !important;
+            height: 40px !important;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+
+            padding: 0 44px 0 16px !important;
+            background: #fff !important;
+            color: rgba(36, 49, 54, .8) !important;
+            border: .8px solid #9F9FA9 !important;
+            border-radius: 16px !important;
+            cursor: pointer !important;
+            position: relative !important;
+        }
+
+        .filters .category-trigger::after {
+            content: "";
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: currentColor;
+            -webkit-mask: no-repeat center/100% 100% url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 9l5 5 5-5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+            mask: no-repeat center/100% 100% url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 9l5 5 5-5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+            pointer-events: none;
+        }
+
+        .filters .category-select.open .category-trigger::after {
+            transform: translateY(-50%) rotate(180deg);
+            color: #0f83e2;
+        }
+
+        .filters .category-menu {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: calc(100% + 6px);
+            min-width: 100%;
+            background: #fff;
+            border: 1px solid #E9EAEB;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+            padding: 8px 0;
+            z-index: 3000;
+        }
+
+        .filters .category-select.open .category-menu {
+            display: block;
+        }
+
+        .filters .category-menu button {
+            all: unset;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 14px;
+            font: inherit;
+            color: #243136;
+            cursor: pointer;
+        }
+
+        .filters .category-menu button:hover {
+            background: #F4F7FB;
+        }
+    </style>
+
+    <!-- Loading Screen -->
+        <div class="curve-loading" id="loadingScreen">
+            <svg class="spinner" viewBox="0 0 100 100">
+                <path d="M 50,10 A 40,40 0 1,1 50,90" fill="none" stroke-linecap="round" />
+                <path d="M 50,90 A 40,40 0 1,1 50,10" fill="none" stroke-linecap="round" />
+            </svg>
+            <div class="loading-text">SkillUp e-Learning</div>
+        </div>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/skillup-froned/image/logocourse.png" alt="SkillUp Logo"
+                style="width: 140.5px; height: 52.2px; border-radius: 4px;">
+        </div>
+        <div class="nav-links">
+            <a href="#">หน้าหลัก</a>
+            <a href="/skillup-froned/userroom.html">หลักสูตร</a>
+            <a href="#">เกี่ยวกับเรา</a>
+            <a href="#">ติดต่อเรา</a>
+        </div>
+        <div class="user-profile" id="userProfile">
+            <div class="user-avatar"></div>
+            <div class="user-name">ฮารูน</div>
+            <div class="dropdown-arrow"></div>
+        </div>
+
+        <!-- User Dropdown -->
+        <div class="user-dropdown" id="userDropdown">
+            <div class="dropdown-header">
+                <div class="dropdown-avatar"></div>
+                <div class="dropdown-user-info">
+                    <div class="dropdown-name">ฮารูน</div>
+                    <div class="dropdown-email">Haroon@gmail.com</div>
+                </div>
+            </div>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/skillup-froned/profile.html">ข้อมูลส่วนตัว</a>
+                <a class="dropdown-item" href="/skillup-froned/my-courses.html">หลักสูตรของฉัน</a>
+                <a class="dropdown-item" href="/skillup-froned/index.html">ออกจากระบบ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Section Title -->
+        <div class="section-title">
+            <h1>หลักสูตรของฉัน</h1>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs-container" id="tabsContainer">
+            <div class="tab active" data-tab="learning">
+                <div class="tab-text">กำลังเรียน</div>
+            </div>
+            <div class="tab" data-tab="done">
+                <div class="tab-text">เสร็จสิ้น</div>
+            </div>
+            <div class="tab" data-tab="open">
+                <div class="tab-text">หลักสูตรที่เปิด</div>
+            </div>
+            <span class="tab-indicator" id="tabIndicator" aria-hidden="true"></span>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="category-select" id="catSelect">
+                <button type="button" class="category-trigger" id="catTrigger">
+                    <span id="catLabel">หมวดหมู่ทั้งหมด</span>
+                </button>
+
+                <div class="category-menu" id="catMenu">
+                    <button type="button" data-cat="all">ทั้งหมด</button>
+                    <button type="button" data-cat="dev">Development</button>
+                    <button type="button" data-cat="design">Design</button>
+                    <button type="button" data-cat="data">Data</button>
+                </div>
+            </div>
+
+            <div class="search-filter">
+                <form id="courseSearch" role="search" autocomplete="off">
+                    <input type="search" id="searchInput" class="search-input" placeholder="ค้นหาหลักสูตร"
+                        aria-label="ค้นหาหลักสูตร" />
+                    <button type="submit" class="search-btn" aria-label="ค้นหา"></button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Course Stats -->
+        <div class="course-stats">
+            <div class="section-title">
+                <div class="title-accent"></div>
+                <h1>หลักสูตรทั้งหมด</h1>
+            </div>
+            <div class="course-count">จำนวน 8 หลักสูตร</div>
+        </div>
+
+        <!-- Tab Panels -->
+        <div class="tab-panels" id="tabPanels">
+            <!-- กำลังเรียน -->
+            <div class="tab-panel is-active" data-panel="learning">
+                <div class="course-grid">
+                    <!-- Course Card 1 -->
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag">
+                            <span>Development</span>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-title">การพัฒนาเว็บแอปพลิเคชันด้วย React</div>
+                            <div class="course-instructor">โดย ผศ.ดร.สมชาย ใจดี</div>
+                            <div class="course-description">
+                                การพัฒนาเว็บแอปพลิเคชันด้วย React คือการสร้างระบบหน้าเว็บที่มีประสิทธิภาพสูง
+                                รองรับการทำงานแบบโต้ตอบ (Interactive) และตอบสนองรวดเร็ว ด้วยโครงสร้างแบบคอมโพเนนต์
+                                (Component-Based) ช่วยให้การพัฒนาและดูแลรักษาโค้ดเป็นไปอย่างยืดหยุ่น มีประสิทธิภาพ
+                                และสามารถขยายต่อยอดได้ง่าย
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">40%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">เรียนต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 2 -->
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag">
+                            <span>Design</span>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-title">การออกแบบ UI/UX สำหรับมือใหม่</div>
+                            <div class="course-instructor">โดย อ.สุนิสา วัฒนา</div>
+                            <div class="course-description">
+                                เรียนรู้พื้นฐานการออกแบบประสบการณ์ผู้ใช้และส่วนต่อประสานผู้ใช้
+                                ตั้งแต่กระบวนการคิด การออกแบบ wireframe จนถึงการสร้าง prototype
+                                ด้วยเครื่องมือสมัยใหม่
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">75%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">เรียนต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 3 -->
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag">
+                            <span>Data</span>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-title">การวิเคราะห์ข้อมูลด้วย Python</div>
+                            <div class="course-instructor">โดย รศ.ดร.กฤษณะ เกียรติศักดิ์</div>
+                            <div class="course-description">
+                                เรียนรู้การวิเคราะห์ข้อมูลด้วยภาษา Python ตั้งแต่พื้นฐานจนถึงขั้นสูง
+                                ครอบคลุมการจัดการข้อมูล การสร้าง visualization และการสร้างโมเดลทำนาย
+                                ด้วยไลบรารีสำคัญเช่น Pandas, Matplotlib และ Scikit-learn
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">25%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">เรียนต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag">
+                            <span>Data</span>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-title">การวิเคราะห์ข้อมูลด้วย Python</div>
+                            <div class="course-instructor">โดย รศ.ดร.กฤษณะ เกียรติศักดิ์</div>
+                            <div class="course-description">
+                                เรียนรู้การวิเคราะห์ข้อมูลด้วยภาษา Python ตั้งแต่พื้นฐานจนถึงขั้นสูง
+                                ครอบคลุมการจัดการข้อมูล การสร้าง visualization และการสร้างโมเดลทำนาย
+                                ด้วยไลบรารีสำคัญเช่น Pandas, Matplotlib และ Scikit-learn
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">25%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">เรียนต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag">
+                            <span>Data</span>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-title">การวิเคราะห์ข้อมูลด้วย Python</div>
+                            <div class="course-instructor">โดย รศ.ดร.กฤษณะ เกียรติศักดิ์</div>
+                            <div class="course-description">
+                                เรียนรู้การวิเคราะห์ข้อมูลด้วยภาษา Python ตั้งแต่พื้นฐานจนถึงขั้นสูง
+                                ครอบคลุมการจัดการข้อมูล การสร้าง visualization และการสร้างโมเดลทำนาย
+                                ด้วยไลบรารีสำคัญเช่น Pandas, Matplotlib และ Scikit-learn
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">25%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">เรียนต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag">
+                            <span>Data</span>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-title">การวิเคราะห์ข้อมูลด้วย Python</div>
+                            <div class="course-instructor">โดย รศ.ดร.กฤษณะ เกียรติศักดิ์</div>
+                            <div class="course-description">
+                                เรียนรู้การวิเคราะห์ข้อมูลด้วยภาษา Python ตั้งแต่พื้นฐานจนถึงขั้นสูง
+                                ครอบคลุมการจัดการข้อมูล การสร้าง visualization และการสร้างโมเดลทำนาย
+                                ด้วยไลบรารีสำคัญเช่น Pandas, Matplotlib และ Scikit-learn
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">25%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">เรียนต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag">
+                            <span>Data</span>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-title">การวิเคราะห์ข้อมูลด้วย Python</div>
+                            <div class="course-instructor">โดย รศ.ดร.กฤษณะ เกียรติศักดิ์</div>
+                            <div class="course-description">
+                                เรียนรู้การวิเคราะห์ข้อมูลด้วยภาษา Python ตั้งแต่พื้นฐานจนถึงขั้นสูง
+                                ครอบคลุมการจัดการข้อมูล การสร้าง visualization และการสร้างโมเดลทำนาย
+                                ด้วยไลบรารีสำคัญเช่น Pandas, Matplotlib และ Scikit-learn
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">25%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">เรียนต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag">
+                            <span>Data</span>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-title">การวิเคราะห์ข้อมูลด้วย Python</div>
+                            <div class="course-instructor">โดย รศ.ดร.กฤษณะ เกียรติศักดิ์</div>
+                            <div class="course-description">
+                                เรียนรู้การวิเคราะห์ข้อมูลด้วยภาษา Python ตั้งแต่พื้นฐานจนถึงขั้นสูง
+                                ครอบคลุมการจัดการข้อมูล การสร้าง visualization และการสร้างโมเดลทำนาย
+                                ด้วยไลบรารีสำคัญเช่น Pandas, Matplotlib และ Scikit-learn
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">25%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">เรียนต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag">
+                            <span>Data</span>
+                        </div>
+                        <div class="course-body">
+                            <div class="course-title">การวิเคราะห์ข้อมูลด้วย Python</div>
+                            <div class="course-instructor">โดย รศ.ดร.กฤษณะ เกียรติศักดิ์</div>
+                            <div class="course-description">
+                                เรียนรู้การวิเคราะห์ข้อมูลด้วยภาษา Python ตั้งแต่พื้นฐานจนถึงขั้นสูง
+                                ครอบคลุมการจัดการข้อมูล การสร้าง visualization และการสร้างโมเดลทำนาย
+                                ด้วยไลบรารีสำคัญเช่น Pandas, Matplotlib และ Scikit-learn
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">25%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">เรียนต่อ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- เสร็จสิ้น -->
+            <div class="tab-panel" data-panel="done">
+                <div class="course-grid">
+                    <!-- Course Card 1 -->
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag"><span>Business</span></div>
+                        <div class="course-body">
+                            <div class="course-title">การตลาดดิจิทัลสำหรับธุรกิจ SME</div>
+                            <div class="course-instructor">โดย ดร.พิมพา รุ่งเรือง</div>
+                            <div class="course-description">
+                                เรียนรู้กลยุทธ์การตลาดดิจิทัลที่เหมาะกับธุรกิจขนาดเล็กและกลาง
+                                ครอบคลุม SEO, Social Media Marketing, Content Marketing
+                                และการวัดผลลัพธ์
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">100%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">ดูใบประกาศ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 2 -->
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag"><span>Language</span></div>
+                        <div class="course-body">
+                            <div class="course-title">ภาษาอังกฤษสำหรับการทำงาน</div>
+                            <div class="course-instructor">โดย อ.เจนี่ สมิธ</div>
+                            <div class="course-description">
+                                พัฒนาทักษะภาษาอังกฤษที่จำเป็นสำหรับการทำงาน
+                                ครอบคลุมการสื่อสารทางอีเมล การนำเสนอ การประชุม
+                                และการเจรจาธุรกิจ
+                            </div>
+                            <div class="course-progress">
+                                <div class="progress-info">
+                                    <div class="progress-label">ความคืบหน้า</div>
+                                    <div class="progress-percent">100%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="course-action">
+                                <div class="continue-btn">ดูใบประกาศ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- หลักสูตรที่เปิด -->
+            <div class="tab-panel" data-panel="open">
+                <div class="course-grid">
+                    <!-- Course Card 1 -->
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag"><span>Design</span></div>
+                        <div class="course-body">
+                            <div class="course-title">การออกแบบกราฟิกด้วย Adobe Illustrator</div>
+                            <div class="course-instructor">โดย อ.ณัฐพล ศิลปกรรม</div>
+                            <div class="course-description">
+                                เรียนรู้เทคนิคการออกแบบกราฟิกด้วย Adobe Illustrator
+                                ตั้งแต่พื้นฐานจนถึงระดับมืออาชีพ ครอบคลุมเครื่องมือสำคัญ
+                                และเทคนิคการสร้างงานกราฟิกสำหรับสื่อต่างๆ
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 2 -->
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag"><span>Development</span></div>
+                        <div class="course-body">
+                            <div class="course-title">การพัฒนาแอปพลิเคชันมือถือด้วย Flutter</div>
+                            <div class="course-instructor">โดย อ.ธนวัฒน์ โค้ดดิ้ง</div>
+                            <div class="course-description">
+                                สร้างแอปพลิเคชันมือถือที่ทำงานได้ทั้งบน iOS และ Android
+                                ด้วย Flutter Framework เรียนรู้การออกแบบ UI
+                                การจัดการสถานะ และการเชื่อมต่อ API
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Card 3 -->
+                    <div class="course-card">
+                        <div class="course-thumbnail">
+                            <img src="/skillup-froned/image/course/Default.png" alt="thumbnail">
+                        </div>
+                        <div class="course-category-tag"><span>Business</span></div>
+                        <div class="course-body">
+                            <div class="course-title">การจัดการโครงการแบบ Agile</div>
+                            <div class="course-instructor">โดย ดร.ศุภลักษณ์ จัดการ</div>
+                            <div class="course-description">
+                                เรียนรู้หลักการและวิธีการจัดการโครงการแบบ Agile
+                                ครอบคลุม Scrum, Kanban และเครื่องมือที่ใช้ในการจัดการโครงการ
+                                เพื่อเพิ่มประสิทธิภาพการทำงานเป็นทีม
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- วางต่อจาก </div> ของ .course-grid -->
+        <nav class="pagination" id="coursePager" aria-label="เปลี่ยนหน้า">
+            <!-- ปุ่มจะถูกเติมด้วยสคริปต์ -->
+        </nav>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/skillup-froned/image/logo1.jpg" alt="SkillUp Logo">
+                <p>
+                    SkillUp – แพลตฟอร์ม e-Learning เพื่อการอัปสกิล / รีสกิล<br>
+                    โครงการพัฒนาโดยทีมวิศวกรรมซอฟต์แวร์
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+                <h3>ลิงก์ที่เกี่ยวข้อง</h3>
+                <ul>
+                    <ul>
+                        <li><a href="/skillup-froned/about.html">เกี่ยวกับ SkillUp</a></li>
+                        <li><a href="/skillup-froned/courses.html">คอร์สทั้งหมด</a></li>
+                        <li><a href="/skillup-froned/teach.html">สอนกับ SkillUp</a></li>
+                        <li><a href="/skillup-froned/pricing.html">แพ็กเกจสมาชิก</a></li>
+                        <li><a href="/skillup-froned/help.html">ศูนย์ช่วยเหลือ</a></li>
+                        <li><a href="/skillup-froned/privacy-policy.html">นโยบายความเป็นส่วนตัว</a></li>
+                        <li><a href="/skillup-froned/terms.html">ข้อกำหนดการใช้งาน</a></li>
+                    </ul>
+                </ul>
+            </div>
+
+            <div id="footer" class="footer-contact">
+                <h3>ข้อมูลการติดต่อ</h3>
+                <div class="contact-info">
+                    <p> SkillUp Co., Ltd. </p>
+                    <p> กรุงเทพฯ 10240, ประเทศไทย </p>
+                    <p> เวลาทำการ: วันจันทร์–ศุกร์ เวลา 08.30–16.30 น.</p>
+                    <a class="email-pill" href="mailto:dev@skillup.example">
+                        <span class="email-pill__icon" aria-hidden="true"></span>
+                        <span class="email-pill__text">dev@skillup.example</span>
+                    </a>
+                    <br><br>
+                    <a class="number-pill" href="mailto:โทรศัพท์: 02-000-0000">
+                        <span class="number-pill__icon" aria-hidden="true"></span>
+                        <span class="number-pill__text">โทรศัพท์: 02-000-0000</span>
+                    </a>
+
+                    <!--  <div class="social">
+                        <a href="https://facebook.com/skillup" target="_blank" rel="noopener">Facebook</a> ·
+                        <a href="https://instagram.com/skillup" target="_blank" rel="noopener">Instagram</a> ·
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="footer-bottom">
+            <p>สงวนลิขสิทธิ์ © 2568 โดยนิสิตคณะวิศวกรรมศาสตร์ มหาวิทยาลัยรามคำแหง</p>
+            <p><a href="/skillup-froned/privacy-policy.html" style="color: var(--white);">Terms and conditions</a></p>
+            <p><a href="/skillup-froned/privacy-policy.html" style="color: var(--white);">Privacy polic</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Loading screen and animations
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                // ซ่อน loading screen
+                document.getElementById('loadingScreen').classList.add('hidden');
+                // สไลด์ .hero-split ขึ้น
+                document.querySelector('.hero-split').classList.add('visible');
+                // ไล่แสดง feature cards
+                revealFeatures();
+                // เริ่มสังเกต stats section
+                watchStats();
+                // d) ใช้ IntersectionObserver กับ hero-split ทันทีที่ loader หาย
+                const hero = document.querySelector('.hero-split');
+                const heroIo = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting) {
+                        hero.classList.add('visible');
+                        heroIo.disconnect();
+                    }
+                }, { threshold: 0.2 });
+                heroIo.observe(hero);
+            }, 2500);
+        });
+        // Toggle user dropdown
+        const userProfile = document.getElementById('userProfile');
+        const userDropdown = document.getElementById('userDropdown');
+
+        userProfile.addEventListener('click', function (e) {
+            e.stopPropagation();                   // กันคลิกแล้วไปทริกเกอร์ตัวปิดข้างนอก
+            userDropdown.classList.toggle('active');
+            userProfile.classList.toggle('open');  // ใช้ควบคุมลูกศรหมุน/สี
+        });
+
+        // ปิดเมื่อคลิกนอก
+        document.addEventListener('click', function (event) {
+            if (!userProfile.contains(event.target) && !userDropdown.contains(event.target)) {
+                userDropdown.classList.remove('active');
+                userProfile.classList.remove('open');
+            }
+        });
+
+        document.querySelector('.dropdown-menu').addEventListener('click', e => {
+            if (e.target.matches('.dropdown-item')) {
+                document.getElementById('userDropdown').classList.remove('active');
+                document.getElementById('userProfile').classList.remove('open');
+            }
+        });
+
+
+        const form = document.getElementById('courseSearch');     // <form id="courseSearch">…</form>
+        const input = document.getElementById('searchInput');       // <input id="searchInput">
+
+        function applyFilter() {
+            const q = (input.value || "").trim().toLowerCase();
+            const cards = document.querySelectorAll('.course-card');  // การ์ดคอร์ส
+            // ถ้าค่าว่าง → โชว์ทั้งหมด
+            if (!q) {
+                cards.forEach(card => card.style.display = '');
+                return;
+            }
+            // กรองตามชื่อคอร์ส (ปรับ selector ให้ตรงกับโครงสร้างของคุณ)
+            cards.forEach(card => {
+                const title = (card.querySelector('.course-title')?.textContent || '').toLowerCase();
+                card.style.display = title.includes(q) ? '' : 'none';
+            });
+        }
+
+        // กด Enter ที่ฟอร์ม
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();   // กันรีเฟรชหน้า
+            applyFilter();
+        });
+
+        // พิมพ์/ลบ แล้วว่าง → รีเซ็ตอัตโนมัติ
+        input.addEventListener('input', () => {
+            if (!input.value.trim()) applyFilter();
+        });
+
+        const catSelect = document.getElementById('catSelect');
+        const catTrigger = document.getElementById('catTrigger');
+        const catLabel = document.getElementById('catLabel');
+
+        catTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            catSelect.classList.toggle('open');
+        });
+        document.addEventListener('click', () => catSelect.classList.remove('open'));
+
+        document.querySelectorAll('#catMenu [data-cat]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                catLabel.textContent = btn.textContent;      // เปลี่ยนข้อความบนปุ่ม
+                catSelect.classList.remove('open');          // ปิดเมนู
+                // TODO: ใส่โค้ด filter คอร์สตาม data-cat ได้ที่นี่
+            });
+        });
+
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const panels = document.querySelectorAll('.tab-panel');
+        const panelsWrapper = document.getElementById('tabPanels');
+        const indicator = document.getElementById('tabIndicator');
+        const tabsContainer = document.getElementById('tabsContainer');
+
+        // Move indicator to active tab
+        function moveIndicatorTo(tab) {
+            const containerRect = tabsContainer.getBoundingClientRect();
+            const tabRect = tab.getBoundingClientRect();
+
+            indicator.style.width = `${tabRect.width}px`;
+            indicator.style.transform = `translateX(${tabRect.left - containerRect.left}px)`;
+        }
+
+        // Activate panel with animation
+        function activatePanel(key) {
+            const nextPanel = document.querySelector(`[data-panel="${key}"]`);
+            const currentPanel = document.querySelector('.tab-panel.is-active');
+
+            // Set initial height
+            panelsWrapper.style.height = `${currentPanel.offsetHeight}px`;
+
+            // Switch active classes
+            currentPanel.classList.remove('is-active');
+            nextPanel.classList.add('is-active');
+
+            // Animate to new height
+            requestAnimationFrame(() => {
+                const targetHeight = Math.max(nextPanel.offsetHeight, 120);
+                panelsWrapper.style.height = `${targetHeight}px`;
+            });
+
+            // Reset height after animation
+            const onTransitionEnd = () => {
+                panelsWrapper.style.height = 'auto';
+                panelsWrapper.removeEventListener('transitionend', onTransitionEnd);
+            };
+            panelsWrapper.addEventListener('transitionend', onTransitionEnd);
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            const activeTab = document.querySelector('.tab.active');
+            moveIndicatorTo(activeTab);
+
+            const activePanel = document.querySelector('.tab-panel.is-active');
+            panelsWrapper.style.height = `${Math.max(activePanel.offsetHeight, 120)}px`;
+
+            // Reset to auto after initial setup
+            requestAnimationFrame(() => {
+                panelsWrapper.style.height = 'auto';
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const activeTab = document.querySelector('.tab.active');
+            moveIndicatorTo(activeTab);
+
+            const activePanel = document.querySelector('.tab-panel.is-active');
+            panelsWrapper.style.height = `${Math.max(activePanel.offsetHeight, 120)}px`;
+
+            // Reset to auto after resize
+            clearTimeout(window.resizeTimer);
+            window.resizeTimer = setTimeout(() => {
+                panelsWrapper.style.height = 'auto';
+            }, 150);
+        });
+
+        // Tab click handler
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                // Move indicator
+                moveIndicatorTo(this);
+
+                // Activate corresponding panel
+                const key = this.dataset.tab;
+                activatePanel(key);
+            });
+        });
+
+
+        ////
+        ////
+        const pagerEl = document.getElementById('coursePager');
+        let pagerAPI = null;
+
+        function makePagerFor(panel) {
+            const cards = Array.from(panel.querySelectorAll('.course-grid .course-card'));
+            const perPage = 6;
+            let page = 1;
+            const totalPages = Math.max(1, Math.ceil(cards.length / perPage));
+
+            function showPage(p) {
+                page = Math.min(Math.max(1, p), totalPages);
+                const s = (page - 1) * perPage, e = s + perPage;
+                cards.forEach((c, i) => c.style.display = (i >= s && i < e) ? '' : 'none');
+                render();
+            }
+
+            function btn(lbl, { icon = null, to = 1, disabled = false, current = false } = {}) {
+                if (lbl === '…') { const sp = document.createElement('span'); sp.className = 'page-ellipsis'; sp.textContent = '…'; return sp; }
+                const b = document.createElement('button'); b.type = 'button'; b.className = 'page-btn';
+                if (current) b.classList.add('is-current'); if (disabled) b.classList.add('is-disabled');
+                if (icon) { const i = document.createElement('i'); i.className = `icon ${icon}`; b.appendChild(i); } else b.textContent = lbl;
+                if (!disabled && !current) b.addEventListener('click', () => showPage(to));
+                return b;
+            }
+
+            function render() {
+                if (totalPages <= 1) { pagerEl.style.display = 'none'; pagerEl.innerHTML = ''; return; }
+                pagerEl.style.display = 'flex'; pagerEl.innerHTML = '';
+                pagerEl.append(
+                    btn('', { icon: 'icon-first', to: 1, disabled: page === 1 }),
+                    btn('', { icon: 'icon-prev', to: page - 1, disabled: page === 1 }),
+                );
+                const win = 1, add = n => pagerEl.append(btn(String(n), { to: n, current: n === page }));
+                add(1);
+                if (page > 2 + win) pagerEl.append(btn('…'));
+                for (let n = Math.max(2, page - win); n <= Math.min(totalPages - 1, page + win); n++) add(n);
+                if (page < totalPages - (1 + win)) pagerEl.append(btn('…'));
+                if (totalPages > 1) add(totalPages);
+                pagerEl.append(
+                    btn('', { icon: 'icon-next', to: page + 1, disabled: page === totalPages }),
+                    btn('', { icon: 'icon-last', to: totalPages, disabled: page === totalPages }),
+                );
+            }
+
+            showPage(1); // เริ่มหน้า 1 เสมอ
+            return { destroy() { pagerEl.innerHTML = ''; } };
+        }
+
+        // สร้าง pager ครั้งแรกให้แท็บที่ active
+        window.addEventListener('load', () => {
+            const activePanel = document.querySelector('.tab-panel.is-active');
+            pagerAPI = makePagerFor(activePanel);
+        });
+
+        // เวลาเปลี่ยนแท็บ ให้รีบิลด์ (รีเซ็ตเป็นหน้า 1)
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const key = tab.dataset.tab;
+                // โค้ดเปลี่ยนแท็บของคุณ…
+                const newPanel = document.querySelector(`.tab-panel[data-panel="${key}"]`);
+                if (pagerAPI) pagerAPI.destroy();
+                pagerAPI = makePagerFor(newPanel);
+            });
+        });
+
+    </script>
+</body>
+
+</html>
